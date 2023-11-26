@@ -31,8 +31,8 @@ def s(reel_link: str, user_id: int, context: CallbackContext):
         if extract_scene(result) == 1:
             with open("output.jpg", 'rb') as image_file:
 
-                context.bot.send_message(chat_id=ADMIN, text=result)
-                context.bot.send_photo(chat_id=ADMIN, photo=image_file)
+                send_msg(result)
+                send_image()
 
                 context.bot.editMessageText(message_id=edit_msg.message_id, chat_id=user_id, text=result)
                 context.bot.send_photo(chat_id=user_id, photo=image_file)

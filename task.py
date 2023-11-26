@@ -73,3 +73,26 @@ def extract_scene(video_url, output_image_path='output.jpg', change_threshold=0.
 
     # No scene change detected
     return 0
+
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from the .env file
+load_dotenv()
+
+ADMIN = os.getenv("ADMIN")
+TOKEN = os.getenv("API_TOKEN")
+
+def send_image():
+    url = f"https://api.telegram.org/bot{TOKEN}/sendPhoto"
+    files = {'photo': open("output.jpg", 'rb')}
+    params = {'chat_id': ADMIN}
+
+    response = requests.post(url, params=params, files=files)
+    return response.json()
+
+def send_msg(msg):
+    endpoint = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
+    chat_id = ADMIN
+    parameters = {'chat_id':chat_id,'text':msg}
+    requests.get(url = endpoint, params = parameters)
