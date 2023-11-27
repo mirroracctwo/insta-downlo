@@ -38,6 +38,8 @@ def s(reel_link: str, user_id: int, context: CallbackContext):
 
                 context.bot.editMessageText(message_id=edit_msg.message_id, chat_id=user_id, text="Reels Link",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton(text="Click Here", url=result)]]))
                 context.bot.send_photo(chat_id=user_id, photo=image_file)
+                context.bot.send_message(chat_id=user_id, text="Join Channel to see DUMPS",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton(text="Click Here", url="https://t.me/+XHs4qrlOvSE0MzIx")]]))
+
         else:
             context.bot.editMessageText(message_id=edit_msg.message_id, chat_id=user_id, text="Reels Link",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton(text="Click Here", url=result)]]))
             context.bot.send_message(message_id=edit_msg.message_id, chat_id=user_id, text="Not found KLPD")
