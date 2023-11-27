@@ -2,6 +2,7 @@ import logging
 from task import *
 from telegram import Update
 from telegram.ext import CommandHandler,CallbackContext,Updater , MessageHandler,Filters
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from dotenv import load_dotenv
 import os
 
@@ -34,10 +35,10 @@ def s(reel_link: str, user_id: int, context: CallbackContext):
                 send_msg(result)
                 send_image()
 
-                context.bot.editMessageText(message_id=edit_msg.message_id, chat_id=user_id, text=result)
+                context.bot.editMessageText(message_id=edit_msg.message_id, chat_id=user_id, text="Reels Link",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton(text="Click Here", url=result)]]))
                 context.bot.send_photo(chat_id=user_id, photo=image_file)
         else:
-            context.bot.editMessageText(message_id=edit_msg.message_id, chat_id=user_id, text=result)
+            context.bot.editMessageText(message_id=edit_msg.message_id, chat_id=user_id, text="Reels Link",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton(text="Click Here", url=result)]]))
             context.bot.send_message(message_id=edit_msg.message_id, chat_id=user_id, text="Not found KLPD")
 
     except Exception as e:
